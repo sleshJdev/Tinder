@@ -1,10 +1,7 @@
-# Tinder
-Tinder Swag
-
-# Demo 
-https://www.youtube.com/watch?v=FTGa8Tjwfi8
+# Buber
+Tinder like app to look for "girls"
 
 # Launch Tinder
 - Clone
-- Npm install in terminal
+- Npm/Yarn install in terminal
 - Run on IOS simulator or Android emulator
