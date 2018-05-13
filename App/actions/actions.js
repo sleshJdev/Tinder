@@ -5,7 +5,7 @@ export function login(navProps, res) {
   console.log(res);
   return {
     type: types.LOGIN,
-    nav:navProps,
+    nav: navProps,
     data: res
   };
 }
