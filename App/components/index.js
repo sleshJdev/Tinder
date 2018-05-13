@@ -15,7 +15,6 @@ import Profile from './profile';
 export default class Index extends Component {
   constructor(props) {
     super(props)
-
   }
 
   renderScene(route, navigator) {
