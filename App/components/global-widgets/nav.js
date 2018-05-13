@@ -35,19 +35,6 @@ export default class Nav extends Component {
     );
   }
 
-  message() {
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity onPress={this.props.onPress}>
-          <Image source={require('../../images/tinder.png')} style={{ width: 25, height: 25, margin: 10 }}/>
-        </TouchableOpacity>
-        <Image source={require('../../images/logo.png')} resizeMode="contain"
-               style={{ width: 100, height: 30 }}/>
-        <View style={{ width: 25, height: 25, margin: 10 }}/>
-      </View>
-    );
-  }
-
   render() {
     if (this.props.type === 'profile') {
       return this.profile()
