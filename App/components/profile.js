@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Nav from './global-widgets/nav'
 
-const { height, width } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export default class Profile extends Component {
   constructor(props) {
@@ -17,9 +17,7 @@ export default class Profile extends Component {
     this.state = {
       friends: 1098
     }
-
   }
-
 
   render() {
     return (
@@ -41,64 +39,11 @@ export default class Profile extends Component {
             <Text style={{ color: '#555' }}>We hook up, you do my laundry, I promise to call you but never
               really.</Text>
           </View>
-          <View style={styles.commons}>
-            <Text style={styles.title}>
-              {this.state.friends} for Common Connections
-            </Text>
-            <Text style={{ marginTop: 10, fontSize: 14, color: '#666', fontWeight: "400" }}>We compare your Facebook
-              friends with those of your matches to display any common connections</Text>
-          </View>
-          <View style={styles.commons}>
-            <Text style={styles.title}>
-              Instagram Photos
-            </Text>
-            <ScrollView
-              horizontal={true}
-            >
-              <View style={{}}>
-                <Image source={require('../images/profile.jpg')} resizeMode="stretch"
-                       style={{ height: 100, width: 100, margin: 5 }}/>
-                <Image source={require('../images/profile.jpg')} resizeMode="stretch"
-                       style={{ height: 100, width: 100, margin: 5 }}/>
-              </View>
-              <View style={{}}>
-                <Image source={require('../images/profile.jpg')} resizeMode="stretch"
-                       style={{ height: 100, width: 100, margin: 5 }}/>
-                <Image source={require('../images/profile.jpg')} resizeMode="stretch"
-                       style={{ height: 100, width: 100, margin: 5 }}/>
-              </View>
-              <View style={{}}>
-                <Image source={require('../images/profile.jpg')} resizeMode="stretch"
-                       style={{ height: 100, width: 100, margin: 5 }}/>
-                <Image source={require('../images/profile.jpg')} resizeMode="stretch"
-                       style={{ height: 100, width: 100, margin: 5 }}/>
-              </View>
-              <View style={{}}>
-                <Image source={require('../images/profile.jpg')} resizeMode="stretch"
-                       style={{ height: 100, width: 100, margin: 5 }}/>
-                <Image source={require('../images/profile.jpg')} resizeMode="stretch"
-                       style={{ height: 100, width: 100, margin: 5 }}/>
-              </View>
-              <View style={{}}>
-                <Image source={require('../images/profile.jpg')} resizeMode="stretch"
-                       style={{ height: 100, width: 100, margin: 5 }}/>
-                <Image source={require('../images/profile.jpg')} resizeMode="stretch"
-                       style={{ height: 100, width: 100, margin: 5 }}/>
-              </View>
-              <View style={{}}>
-                <Image source={require('../images/profile.jpg')} resizeMode="stretch"
-                       style={{ height: 100, width: 100, margin: 5 }}/>
-                <Image source={require('../images/profile.jpg')} resizeMode="stretch"
-                       style={{ height: 100, width: 100, margin: 5 }}/>
-              </View>
-            </ScrollView>
-          </View>
         </ScrollView>
       </View>
     )
   }
 }
-//onPress = {() => this.renderNope()} 
 
 const styles = StyleSheet.create({
   container: {
@@ -113,23 +58,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
     alignItems: 'flex-end'
   },
-  title: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#333'
-  },
-  commons: {
-    padding: 15
-  },
-  buttons: {
-    width: 80,
-    height: 80,
-    borderWidth: 10,
-    borderColor: '#e7e7e7',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 40
-  },
   description: {
     padding: 15,
     borderTopWidth: 1,
@@ -137,24 +65,5 @@ const styles = StyleSheet.create({
     borderColor: '#e3e3e3',
     marginTop: 10,
     marginBottom: 10
-  },
-  buttonSmall: {
-    width: 50,
-    height: 50,
-    borderWidth: 10,
-    borderColor: '#e7e7e7',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 25
-  },
-  card: {
-    flex: 1,
-    alignItems: 'center',
-    alignSelf: 'center',
-    borderWidth: 2,
-    borderColor: '#e3e3e3',
-    width: 350,
-    height: 420,
   }
-
 });
