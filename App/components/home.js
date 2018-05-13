@@ -11,6 +11,7 @@ import SwipeCards from 'react-native-swipe-cards';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Iconz from 'react-native-vector-icons/Ionicons';
 import HttpClient from '../service/http-client';
+import Auth from '../service/auth';
 
 export default class Home extends Component {
   constructor(props) {
@@ -29,15 +30,14 @@ export default class Home extends Component {
   Card(x) {
     return (
       <View style={styles.card}>
-        <Image source={x.image} resizeMode="contain" style={{ width: 350, height: 350 }}/>
+        <Image source={x.image} resizeMode="contain" style={{ height: 350 }}/>
         <View style={{
           width: 350,
-          height: 50,
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between'
         }}>
-          <View style={{ flexDirection: 'row', margin: 15, marginTop: 25, }}>
+          <View style={{ flexDirection: 'row', margin: 15 }}>
             <Text style={{ fontSize: 20, fontWeight: '300', color: '#444' }}>{x.first_name}, </Text>
             <Text style={{ fontSize: 21, fontWeight: '200', color: '#444' }}>{x.age}</Text>
           </View>
@@ -48,16 +48,20 @@ export default class Home extends Component {
               borderColor: '#e3e3e3',
               alignItems: 'center',
               justifyContent: 'space-between'
-            }}><Icon name='people-outline' size={20} color="#777" style={{}}/><Text
-              style={{ fontSize: 16, fontWeight: '200', color: '#555' }}>{x.friends}</Text></View>
+            }}>
+              <Icon name='people-outline' size={20} color="#777"/>
+              <Text style={{ fontSize: 16, fontWeight: '200', color: '#555' }}>{x.friends}</Text>
+            </View>
             <View style={{
               padding: 13,
               borderLeftWidth: 1,
               borderColor: '#e3e3e3',
               alignItems: 'center',
               justifyContent: 'space-between'
-            }}><Icon name='import-contacts' size={20} color="#777"/><Text
-              style={{ fontSize: 16, fontWeight: '200', color: '#555' }}>{x.interests}</Text></View>
+            }}>
+              <Icon name='import-contacts' size={20} color="#777"/>
+              <Text style={{ fontSize: 16, fontWeight: '200', color: '#555' }}>{x.interests}</Text>
+            </View>
           </View>
         </View>
       </View>
@@ -81,8 +85,12 @@ export default class Home extends Component {
   }
 
   yup() {
-    console.log(this.refs['swiper'])
-    this.refs['swiper']._goToNextCard()
+    if (Auth.isSignedIn()) {
+      console.log(this.refs['swiper'])
+      this.refs['swiper']._goToNextCard()
+    } else {
+      this.props.navigator.replace({ id: 'sign-in' })
+    }
   }
 
   nope() {
@@ -100,8 +108,8 @@ export default class Home extends Component {
           cards={this.state.cards}
           renderCard={(cardData) => this.Card(cardData)}
           renderNoMoreCards={() => this.noMore()}
-          handleYup={this.handleYup}
-          handleNope={this.handleNope}/>
+          handleYup={(card) => this.handleYup(card)}
+          handleNope={(card) => this.handleNope(card)}/>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
           <TouchableOpacity style={styles.buttons} onPress={() => this.nope()}>
             <Iconz name='ios-close' size={45} color="#888" style={{}}/>
@@ -148,8 +156,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderWidth: 2,
     borderColor: '#e3e3e3',
-    width: 350,
-    height: 400,
   }
 
 });

@@ -10,6 +10,7 @@ import { Navigator, View } from 'react-native';
 import Home from './home';
 import Messages from './messages';
 import Profile from './profile';
+import SignIn from "./sign-in";
 
 
 export default class Index extends Component {
@@ -45,6 +46,15 @@ export default class Index extends Component {
           navigator={navigator}/>
       );
     }
+
+    if (routeId === 'sign-in') {
+      return (
+        <SignIn
+          {...this.props}
+          userData={route.userData}
+          navigator={navigator}/>
+      );
+    }
   }
 
 
@@ -55,7 +65,7 @@ export default class Index extends Component {
           style={{ flex: 1 }}
           ref={'NAV'}
           initialRoute={{ id: 'home', name: 'home' }}
-          renderScene={this.renderScene.bind(this)}/>
+          renderScene={(route, navigator) => this.renderScene(route, navigator)}/>
       </View>
     )
   }
