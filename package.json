@@ -1,11 +1,12 @@
 {
-  "name": "Tinder",
+  "name": "Buber",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "logAndroid": "node node_modules/react-native/local-cli/cli.js log-android",
-    "runAndroid": "node node_modules/react-native/local-cli/cli.js run-android"
+    "runAndroid": "node node_modules/react-native/local-cli/cli.js run-android",
+    "upgrade": "node node_modules/react-native/local-cli/cli.js upgrade"
   },
   "dependencies": {
     "react": "15.4.0",
