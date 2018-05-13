@@ -8,7 +8,6 @@ import React, { Component } from 'react';
 import { Navigator, View } from 'react-native';
 
 import Home from './home';
-import Messages from './messages';
 import Profile from './profile';
 import SignIn from "./sign-in";
 
@@ -25,14 +24,6 @@ export default class Index extends Component {
     if (routeId === 'home') {
       return (
         <Home
-          {...this.props}
-          userData={route.userData}
-          navigator={navigator}/>
-      );
-    }
-    if (routeId === 'messages') {
-      return (
-        <Messages
           {...this.props}
           userData={route.userData}
           navigator={navigator}/>

@@ -101,8 +101,7 @@ export default class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Nav chat={() => this.props.navigator.replace({ id: "messages" })}
-             toProfile={() => this.props.navigator.replace({ id: 'profile' })}/>
+        <Nav toProfile={() => this.props.navigator.replace({ id: 'profile' })}/>
         <SwipeCards
           ref={'swiper'}
           cards={this.state.cards}
@@ -125,7 +124,7 @@ export default class Home extends Component {
     )
   }
 }
-//onPress = {() => this.renderNope()} 
+//onPress = {() => this.renderNope()}
 
 const styles = StyleSheet.create({
   container: {

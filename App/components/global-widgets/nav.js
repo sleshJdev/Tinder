@@ -18,9 +18,6 @@ export default class Nav extends Component {
         </TouchableOpacity>
         <Image source={require('../../images/logo.png')} resizeMode="contain"
                style={{ width: 100, height: 30 }}/>
-        <TouchableOpacity onPress={this.props.chat}>
-          <Iconz name="ios-chatboxes-outline" color="#555" size={25} style={{ margin: 10 }}/>
-        </TouchableOpacity>
       </View>
     );
   }
@@ -52,21 +49,10 @@ export default class Nav extends Component {
   }
 
   render() {
-    if (this.props.type == "message") {
-      return (
-        <View>{this.message()}</View>
-      );
+    if (this.props.type === 'profile') {
+      return this.profile()
     }
-    else if (this.props.type == "profile") {
-      return (
-        <View>{this.profile()}</View>
-      );
-    }
-    else {
-      return (
-        <View>{this.home()}</View>
-      );
-    }
+    return this.home()
   }
 }
 
