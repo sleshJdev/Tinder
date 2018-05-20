@@ -6,31 +6,29 @@
 
 import React, { Component } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Nav from './global-widgets/nav'
+import Nav from './global-widgets/nav';
 import SwipeCards from 'react-native-swipe-cards';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Iconz from 'react-native-vector-icons/Ionicons';
 import HttpClient from '../service/http-client';
-import Auth from '../service/auth';
 
 export default class Home extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       cards: []
-    }
+    };
   }
 
   componentDidMount() {
-    HttpClient.fetchGirls().then(girls => {
-      this.setState({ cards: girls })
-    })
+    HttpClient.fetchCards().then(
+      cards => this.setState({ cards: cards }));
   }
 
-  Card(x) {
+  card(x) {
     return (
       <View style={styles.card}>
-        <Image source={x.image} resizeMode="contain" style={{ height: 350 }}/>
+        <Image source={{ uri: x.image }} resizeMode="contain" style={{ width: 350, height: 350 }}/>
         <View style={{
           width: 350,
           flexDirection: 'row',
@@ -65,15 +63,15 @@ export default class Home extends Component {
           </View>
         </View>
       </View>
-    )
+    );
   }
 
   handleYup(card) {
-    console.log(`Yup for ${card.text}`)
+    console.log(`Yup for ${card.text}`);
   }
 
   handleNope(card) {
-    console.log(`Nope for ${card.text}`)
+    console.log(`Nope for ${card.text}`);
   }
 
   noMore() {
@@ -81,21 +79,21 @@ export default class Home extends Component {
       <View style={styles.card}>
         <Text>No More Cards</Text>
       </View>
-    )
+    );
   }
 
   yup() {
-    if (Auth.isSignedIn()) {
-      console.log(this.refs['swiper'])
-      this.refs['swiper']._goToNextCard()
+    if (HttpClient.isSignedIn()) {
+      console.log(this.refs['swiper']);
+      this.refs['swiper']._goToNextCard();
     } else {
-      this.props.navigator.replace({ id: 'sign-in' })
+      this.props.navigator.replace({ id: 'sign-in' });
     }
   }
 
   nope() {
-    console.log(this.refs['swiper'])
-    this.refs['swiper']._goToNextCard()
+    console.log(this.refs['swiper']);
+    this.refs['swiper']._goToNextCard();
   }
 
   render() {
@@ -105,7 +103,7 @@ export default class Home extends Component {
         <SwipeCards
           ref={'swiper'}
           cards={this.state.cards}
-          renderCard={(cardData) => this.Card(cardData)}
+          renderCard={(cardData) => this.card(cardData)}
           renderNoMoreCards={() => this.noMore()}
           handleYup={(card) => this.handleYup(card)}
           handleNope={(card) => this.handleNope(card)}/>
@@ -121,7 +119,7 @@ export default class Home extends Component {
           </TouchableOpacity>
         </View>
       </View>
-    )
+    );
   }
 }
 //onPress = {() => this.renderNope()}
