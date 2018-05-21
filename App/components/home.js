@@ -8,7 +8,6 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Nav from './global-widgets/nav';
 import SwipeCards from 'react-native-swipe-cards';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import Iconz from 'react-native-vector-icons/Ionicons';
 import HttpClient from '../service/http-client';
 
@@ -47,18 +46,6 @@ export default class Home extends Component {
               alignItems: 'center',
               justifyContent: 'space-between'
             }}>
-              <Icon name='people-outline' size={20} color="#777"/>
-              <Text style={{ fontSize: 16, fontWeight: '200', color: '#555' }}>{x.friends}</Text>
-            </View>
-            <View style={{
-              padding: 13,
-              borderLeftWidth: 1,
-              borderColor: '#e3e3e3',
-              alignItems: 'center',
-              justifyContent: 'space-between'
-            }}>
-              <Icon name='import-contacts' size={20} color="#777"/>
-              <Text style={{ fontSize: 16, fontWeight: '200', color: '#555' }}>{x.interests}</Text>
             </View>
           </View>
         </View>
@@ -108,12 +95,6 @@ export default class Home extends Component {
           handleYup={(card) => this.handleYup(card)}
           handleNope={(card) => this.handleNope(card)}/>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-          <TouchableOpacity style={styles.buttons} onPress={() => this.nope()}>
-            <Iconz name='ios-close' size={45} color="#888" style={{}}/>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonSmall}>
-            <Iconz name='ios-information' size={25} color="#888" style={{}}/>
-          </TouchableOpacity>
           <TouchableOpacity style={styles.buttons} onPress={() => this.yup()}>
             <Iconz name='ios-heart-outline' size={36} color="#888" style={{ marginTop: 5 }}/>
           </TouchableOpacity>

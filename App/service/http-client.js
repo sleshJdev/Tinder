@@ -142,8 +142,6 @@ export default class {
             id: card.id,
             first_name: card.name,
             age: 15,
-            friends: 16,
-            interests: 49,
             image: withHost(`/api/ads/${card.id}/banner`),
             // image: 'https://facebook.github.io/react-native/docs/assets/favicon.png',
           };
