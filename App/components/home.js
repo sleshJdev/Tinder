@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Nav from './global-widgets/nav';
 import SwipeCards from 'react-native-swipe-cards';
 import Iconz from 'react-native-vector-icons/Ionicons';
@@ -69,12 +69,19 @@ export default class Home extends Component {
     );
   }
 
-  yup() {
+  review() {
     if (HttpClient.isSignedIn()) {
       console.log(this.refs['swiper']);
       this.refs['swiper']._goToNextCard();
     } else {
-      this.props.navigator.replace({ id: 'sign-in' });
+      Alert.alert(
+        'Sign In',
+        'Please, sign in to view details',
+        [
+          { text: 'Cancel', onPress: () => console.log('Ask me later pressed') },
+          { text: 'Sign In', onPress: () => this.props.navigator.replace({ id: 'sign-in' }) },
+        ],
+        { cancelable: true });
     }
   }
 
@@ -95,7 +102,7 @@ export default class Home extends Component {
           handleYup={(card) => this.handleYup(card)}
           handleNope={(card) => this.handleNope(card)}/>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-          <TouchableOpacity style={styles.buttons} onPress={() => this.yup()}>
+          <TouchableOpacity style={styles.buttons} onPress={() => this.review()}>
             <Iconz name='ios-heart-outline' size={36} color="#888" style={{ marginTop: 5 }}/>
           </TouchableOpacity>
         </View>
