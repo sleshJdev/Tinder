@@ -6,23 +6,23 @@
 
 import React, { Component } from 'react';
 import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import Nav from './global-widgets/nav'
+import Nav from './global-widgets/nav';
 
 const { width } = Dimensions.get('window');
 
 export default class Profile extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       friends: 1098
-    }
+    };
   }
 
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <Nav type="profile" onPress={() => this.props.navigator.replace({ id: 'home' })}/>
+        <Nav type="profile" toHome={() => this.props.navigator.push({ id: 'home' })}/>
         <ScrollView style={styles.container}>
           <Image source={require('../images/profile.jpg')} resizeMode="stretch" style={{ height: 350, width: width }}/>
           <View style={[styles.row, { marginTop: 15 }]}>
@@ -41,7 +41,7 @@ export default class Profile extends Component {
           </View>
         </ScrollView>
       </View>
-    )
+    );
   }
 }
 

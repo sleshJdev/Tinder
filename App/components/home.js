@@ -38,7 +38,7 @@ export default class Home extends Component {
           justifyContent: 'space-between'
         }}>
           <View style={{ flexDirection: 'row', margin: 15 }}>
-            <Text style={{ fontSize: 20, fontWeight: '300', color: '#444' }}>{card.first_name}, </Text>
+            <Text style={{ fontSize: 20, fontWeight: '300', color: '#444' }}>{card.name}, </Text>
             <Text style={{ fontSize: 21, fontWeight: '200', color: '#444' }}>{card.age}</Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
@@ -85,7 +85,7 @@ export default class Home extends Component {
           { cancelable: true });
       } else {
         console.log(this.refs['swiper']);
-        this.props.navigator.replace({
+        this.props.navigator.push({
           id: 'review',
           userData: {
             card: this.card
@@ -98,7 +98,7 @@ export default class Home extends Component {
         'Please, sign in to view details',
         [
           { text: 'Cancel', onPress: () => console.log('Ask me later pressed') },
-          { text: 'Sign In', onPress: () => this.props.navigator.replace({ id: 'sign-in' }) },
+          { text: 'Sign In', onPress: () => this.props.navigator.push({ id: 'sign-in' }) },
         ],
         { cancelable: true });
     }
@@ -112,7 +112,7 @@ export default class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Nav toProfile={() => this.props.navigator.replace({ id: 'profile' })}/>
+        <Nav toProfile={() => this.props.navigator.push({ id: 'profile' })}/>
         <SwipeCards
           ref={'swiper'}
           cards={this.state.cards}

@@ -130,12 +130,16 @@ export default {
         });
       })
       .then((cards) => {
+        const nowYear = new Date().getFullYear();
         return cards.map((card) => {
           console.log(`filtered out ${cards.length} items`);
           return {
             id: card.id,
-            first_name: card.name,
-            age: 15,
+            name: card.name,
+            tel: card.tel,
+            age: nowYear - new Date(card.birthday).getFullYear(),
+            location: card.location,
+            description: card.description,
             image: withHost(`/api/ads/${card.id}/banner`),
             // image: 'https://facebook.github.io/react-native/docs/assets/favicon.png',
           };

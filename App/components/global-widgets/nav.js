@@ -22,14 +22,36 @@ export default class Nav extends Component {
     );
   }
 
+  review() {
+    return (
+      <View style={styles.container}>
+        <TouchableOpacity onPress={this.props.toProfile}>
+          <Iconz name="ios-person" color="#888" size={25} style={{ margin: 10 }}/>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.props.toHome}>
+          <Image source={require('../../images/tinder.png')}
+                 resizeMode="contain"
+                 style={{ width: 100, height: 30 }}/>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.props.toHome}>
+          <Image source={require('../../images/logo.png')}
+                 style={{ width: 100, height: 30, margin: 10 }}/>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   profile() {
     return (
       <View style={styles.container}>
-        <View style={{ width: 25, height: 25, margin: 10 }}/>
-        <Image source={require('../../images/logo.png')} resizeMode="contain"
-               style={{ width: 100, height: 30 }}/>
-        <TouchableOpacity onPress={this.props.onPress}>
-          <Image source={require('../../images/tinder.png')} style={{ width: 25, height: 25, margin: 10 }}/>
+        <TouchableOpacity onPress={this.props.toHome}>
+          <Image source={require('../../images/tinder.png')}
+                 resizeMode="contain"
+                 style={{ width: 100, height: 30 }}/>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.props.toHome}>
+          <Image source={require('../../images/logo.png')}
+                 style={{ width: 100, height: 30, margin: 10 }}/>
         </TouchableOpacity>
       </View>
     );
@@ -37,9 +59,12 @@ export default class Nav extends Component {
 
   render() {
     if (this.props.type === 'profile') {
-      return this.profile()
+      return this.profile();
     }
-    return this.home()
+    if (this.props.type === 'review') {
+      return this.review();
+    }
+    return this.home();
   }
 }
 

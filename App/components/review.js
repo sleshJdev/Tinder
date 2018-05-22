@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import Nav from './global-widgets/nav';
+
+const { width } = Dimensions.get('window');
 
 
 export default class Review extends Component {
@@ -12,29 +15,26 @@ export default class Review extends Component {
 
   render() {
     return (
-      <View style={styles.card}>
-        <Image source={{ uri: this.card.image }} resizeMode="contain" style={{ width: 150, height: 150 }}/>
-        <View style={{
-          width: 350,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between'
-        }}>
-          <View style={{ flexDirection: 'row', margin: 15 }}>
-            <Text style={{ fontSize: 20, fontWeight: '300', color: '#444' }}>{this.card.first_name}, </Text>
-            <Text style={{ fontSize: 21, fontWeight: '200', color: '#444' }}>{this.card.age}</Text>
+      <View style={{ flex: 1 }}>
+        <Nav type="review"
+             toProfile={() => this.props.navigator.push({ id: 'profile' })}
+             toHome={() => this.props.navigator.push({ id: 'home' })}/>
+        <ScrollView style={styles.container}>
+          <Image source={{ uri: this.card.image }} resizeMode="contain" style={{ height: 250, width: width }}/>
+          <View style={[styles.row, { marginTop: 15 }]}>
+            <Text style={{ fontSize: 19, fontWeight: '400' }}>{this.card.name}, </Text><Text
+            style={{ fontSize: 21, fontWeight: '300', marginBottom: -2 }}>{this.card.age}</Text>
           </View>
-          <View style={{ flexDirection: 'row' }}>
-            <View style={{
-              padding: 13,
-              borderLeftWidth: 1,
-              borderColor: '#e3e3e3',
-              alignItems: 'center',
-              justifyContent: 'space-between'
-            }}>
-            </View>
+          <View style={styles.row}>
+            <Text style={{ color: '#444', fontSize: 15 }}>{this.card.location.address}</Text>
           </View>
-        </View>
+          <View style={styles.row}>
+            <Text style={{ color: '#777', fontSize: 11 }}>{this.card.tel}</Text>
+          </View>
+          <View style={styles.description}>
+            <Text style={{ color: '#555' }}>{this.card.description}</Text>
+          </View>
+        </ScrollView>
       </View>
     );
   }
@@ -46,30 +46,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f7f7f7',
   },
-  buttons: {
-    width: 80,
-    height: 80,
-    borderWidth: 10,
-    borderColor: '#e7e7e7',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 40
+  row: {
+    flexDirection: 'row',
+    margin: 15,
+    marginBottom: 0,
+    marginTop: 5,
+    alignItems: 'flex-end'
   },
-  buttonSmall: {
-    width: 50,
-    height: 50,
-    borderWidth: 10,
-    borderColor: '#e7e7e7',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 25
-  },
-  card: {
-    flex: 1,
-    alignItems: 'center',
-    alignSelf: 'center',
-    borderWidth: 2,
+  description: {
+    padding: 15,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
     borderColor: '#e3e3e3',
+    marginTop: 10,
+    marginBottom: 10
   }
-
 });
