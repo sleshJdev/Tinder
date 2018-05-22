@@ -1,7 +1,6 @@
 import Times from './times';
 import Storage from './storage';
 import { apiHost } from '../conf/app.conf.dev';
-import { Alert } from 'react-native';
 
 const HEADER_STRING = 'X-Authorization';
 const AUTH_TOKEN_KEY = 'buber.auth.token';
@@ -141,7 +140,6 @@ export default {
             location: card.location,
             description: card.description,
             image: withHost(`/api/ads/${card.id}/banner`),
-            // image: 'https://facebook.github.io/react-native/docs/assets/favicon.png',
           };
         });
       });
