@@ -12,6 +12,8 @@ import Iconz from 'react-native-vector-icons/Ionicons';
 import HttpClient from '../service/http-client';
 
 export default class Home extends Component {
+  card = null;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -24,10 +26,11 @@ export default class Home extends Component {
       cards => this.setState({ cards: cards }));
   }
 
-  card(x) {
+  getCardView(card) {
+    this.card = card;
     return (
       <View style={styles.card}>
-        <Image source={{ uri: x.image }} resizeMode="contain" style={{ width: 350, height: 350 }}/>
+        <Image source={{ uri: card.image }} resizeMode="contain" style={{ width: 350, height: 350 }}/>
         <View style={{
           width: 350,
           flexDirection: 'row',
@@ -35,8 +38,8 @@ export default class Home extends Component {
           justifyContent: 'space-between'
         }}>
           <View style={{ flexDirection: 'row', margin: 15 }}>
-            <Text style={{ fontSize: 20, fontWeight: '300', color: '#444' }}>{x.first_name}, </Text>
-            <Text style={{ fontSize: 21, fontWeight: '200', color: '#444' }}>{x.age}</Text>
+            <Text style={{ fontSize: 20, fontWeight: '300', color: '#444' }}>{card.first_name}, </Text>
+            <Text style={{ fontSize: 21, fontWeight: '200', color: '#444' }}>{card.age}</Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
             <View style={{
@@ -62,6 +65,7 @@ export default class Home extends Component {
   }
 
   noMore() {
+    this.card = null;
     return (
       <View style={styles.card}>
         <Text>No More Cards</Text>
@@ -71,8 +75,23 @@ export default class Home extends Component {
 
   review() {
     if (HttpClient.isSignedIn()) {
-      console.log(this.refs['swiper']);
-      this.refs['swiper']._goToNextCard();
+      if (this.card === null) {
+        Alert.alert(
+          'No Selected Girl',
+          'Please, select girl you like',
+          [
+            { text: 'Ok', onPress: () => console.log('Select girl ok') },
+          ],
+          { cancelable: true });
+      } else {
+        console.log(this.refs['swiper']);
+        this.props.navigator.replace({
+          id: 'review',
+          userData: {
+            card: this.card
+          }
+        });
+      }
     } else {
       Alert.alert(
         'Sign In',
@@ -97,7 +116,7 @@ export default class Home extends Component {
         <SwipeCards
           ref={'swiper'}
           cards={this.state.cards}
-          renderCard={(cardData) => this.card(cardData)}
+          renderCard={(cardData) => this.getCardView(cardData)}
           renderNoMoreCards={() => this.noMore()}
           handleYup={(card) => this.handleYup(card)}
           handleNope={(card) => this.handleNope(card)}/>

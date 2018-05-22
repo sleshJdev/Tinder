@@ -10,11 +10,12 @@ import { Navigator, View } from 'react-native';
 import Home from './home';
 import Profile from './profile';
 import SignIn from "./sign-in";
+import Review from './review';
 
 
 export default class Index extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   renderScene(route, navigator) {
@@ -46,6 +47,16 @@ export default class Index extends Component {
           navigator={navigator}/>
       );
     }
+
+    if (routeId === 'review') {
+      return (
+        <Review
+          {...this.props}
+          userData={route.userData}
+          navigator={navigator}
+        />
+      );
+    }
   }
 
 
@@ -58,7 +69,7 @@ export default class Index extends Component {
           initialRoute={{ id: 'home', name: 'home' }}
           renderScene={(route, navigator) => this.renderScene(route, navigator)}/>
       </View>
-    )
+    );
   }
 }
 
