@@ -103,7 +103,7 @@ export default class Home extends Component {
           handleNope={(card) => this.handleNope(card)}/>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
           <TouchableOpacity style={styles.buttons} onPress={() => this.review()}>
-            <Iconz name='ios-heart-outline' size={36} color="#888" style={{ marginTop: 5 }}/>
+            <Iconz name='ios-eye' size={36} color="#888" style={{ marginTop: 5 }}/>
           </TouchableOpacity>
         </View>
       </View>
