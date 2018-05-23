@@ -13,7 +13,7 @@ export default class SignIn extends Component {
 
   signIn() {
     HttpClient.signIn(this.state).then(response => {
-      this.props.navigator.replace({ id: 'home' })
+      this.props.navigator.pop({ id: 'home' })
     })
   }
 
