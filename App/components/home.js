@@ -115,6 +115,7 @@ export default class Home extends Component {
         <Nav toProfile={() => this.props.navigator.push({ id: 'profile' })}/>
         <SwipeCards
           ref={'swiper'}
+          loop={true}
           cards={this.state.cards}
           renderCard={(cardData) => this.getCardView(cardData)}
           renderNoMoreCards={() => this.noMore()}
