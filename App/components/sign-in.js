@@ -23,7 +23,7 @@ export default class SignIn extends Component {
         <Text style={{ textAlign: 'center', fontSize: 32, marginBottom: 15 }}>Sign In</Text>
         <View>
           <Text>Username:</Text>
-          <TextInput name='username' onChangeText={(username) => this.setState({ username })}/>
+          <TextInput onChangeText={(username) => this.setState({ username })}/>
         </View>
         <View>
           <Text>Password:</Text>
