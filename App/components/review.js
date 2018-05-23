@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Button, Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Nav from './global-widgets/nav';
+import Communications from 'react-native-communications';
 
 const { width } = Dimensions.get('window');
 
@@ -28,12 +29,12 @@ export default class Review extends Component {
           <View style={styles.row}>
             <Text style={{ color: '#444', fontSize: 15 }}>{this.card.location.address}</Text>
           </View>
-          <View style={styles.row}>
-            <Text style={{ color: '#777', fontSize: 11 }}>{this.card.tel}</Text>
-          </View>
           <View style={styles.description}>
             <Text style={{ color: '#555' }}>{this.card.description}</Text>
           </View>
+          <Button title={'Call ' + this.card.tel} style={styles.row}
+                  onPress={() => Communications.phonecall(this.card.tel, true)}>
+          </Button>
         </ScrollView>
       </View>
     );

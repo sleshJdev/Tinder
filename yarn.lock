@@ -1987,6 +1987,10 @@ react-deep-force-update@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-1.1.1.tgz#bcd31478027b64b3339f108921ab520b4313dc2c"
 
+react-native-communications@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-communications/-/react-native-communications-2.2.1.tgz#7883b56b20a002eeb790c113f8616ea8692ca795"
+
 react-native-swipe-cards@^0.0.9:
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/react-native-swipe-cards/-/react-native-swipe-cards-0.0.9.tgz#b663522762ddf7681d99a986f0d52989c49263b9"
