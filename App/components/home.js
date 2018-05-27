@@ -13,6 +13,7 @@ import HttpClient from '../service/http-client';
 
 export default class Home extends Component {
   card = null;
+  intervalId: null;
 
   constructor(props) {
     super(props);
@@ -21,9 +22,47 @@ export default class Home extends Component {
     };
   }
 
+  fetchNewAds() {
+    return HttpClient.fetchCards().then(
+      allCards => {
+        const cards = this.state.cards;
+        if (!cards.length) {
+          this.setState({
+            cards: allCards
+          });
+        }
+        allCards.forEach(newCard => {
+          const existingCard = cards.find(
+            card => card.id === newCard.id);
+          if (!existingCard) {
+            cards.push(newCard);
+          }
+        });
+        cards.forEach((card, i) => {
+          const existingCard = allCards.find(
+            newCard => newCard.id === card.id);
+          if (!existingCard) {
+            cards.splice(i, i + 1);
+          }
+        });
+        if (!cards.length) {
+          this.setState({
+            cards: cards
+          });
+        }
+      });
+  }
+
   componentDidMount() {
     HttpClient.fetchCards().then(
-      cards => this.setState({ cards: cards }));
+      cards => {
+        this.setState({ cards: cards });
+        this.intervalId = setInterval(() => this.fetchNewAds(), 500);
+      });
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
   }
 
   getCardView(card) {
@@ -67,8 +106,8 @@ export default class Home extends Component {
   noMore() {
     this.card = null;
     return (
-      <View style={styles.card}>
-        <Text>No More Cards</Text>
+      <View>
+        <Text style={styles.noMoreCardsText}>No more cards</Text>
       </View>
     );
   }
@@ -133,6 +172,9 @@ export default class Home extends Component {
 //onPress = {() => this.renderNope()}
 
 const styles = StyleSheet.create({
+  noMoreCardsText: {
+    fontSize: 22,
+  },
   container: {
     flex: 1,
     backgroundColor: '#f7f7f7',
