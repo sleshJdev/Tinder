@@ -1,5 +1,5 @@
 # Buber
-Tinder like app to look for "girls"
+Tinder like app
 
 # Launch Buber
 - Clone
